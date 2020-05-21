@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -102,9 +103,12 @@ class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.MyViewHolder>
             cartDecrement.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (quantity > 1)
+                    if (quantity > 1) {
                         countryList.setQuantity(quantity - 1);
-                    notifyDataSetChanged();
+                        notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(mContext, "Currency value not accepted", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
             cartProductQuantityTv.setText(String.valueOf(quantity));
